@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 import Header from './Header';
 import HiraganaType from './HiraganaType';
-import GameType from './GameType';
 
 const styles = {
   buttonDiv: {
@@ -20,19 +19,19 @@ class App extends React.Component {
   }
 
   addCategorieToState = categorie => {
-    this.setState({
+    this.setState(({ categories }) => ({
       ...this.state,
-      categories: [...this.state.categories, categorie]
-    });
+      categories: [...categories, categorie]
+    }));
   };
 
   removeCategorieToState = categorie => {
-    this.setState({
+    this.setState(({ categories }) => ({
       ...this.state,
-      categories: this.state.categories.filter(
+      categories: categories.filter(
         actualCategories => actualCategories !== categorie
       )
-    });
+    }));
   };
 
   onCategorieClick = categorie => {
@@ -42,6 +41,20 @@ class App extends React.Component {
         : this.addCategorieToState(categorie);
   };
 
+  addAllCategories = array => {
+    return () => {
+      const allCategories = [];
+      array.map(categories =>
+        categories.map(categorie => allCategories.push(categorie))
+      );
+      allCategories.forEach(categorie => {
+        if (!this.state.categories.includes(categorie)) {
+          this.addCategorieToState(categorie);
+        }
+      });
+    };
+  };
+
   render() {
     return (
       <Container style={styles.wrapper} className='App'>
@@ -49,8 +62,8 @@ class App extends React.Component {
         <HiraganaType
           categories={this.state.categories}
           onCategorieClick={this.onCategorieClick}
+          addAllCategories={this.addAllCategories}
         />
-        <GameType />
         <div style={styles.buttonDiv}>
           <Button variant='primary' size='lg'>
             Play

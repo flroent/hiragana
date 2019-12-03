@@ -32,20 +32,17 @@ const buttonGroups = [
   ['dakutens', 'composes'],
 ];
 
-const HiraganaType = ({ onCategorieClick, categories }) => (
+const HiraganaType = ({ onCategorieClick, addAllCategories, categories }) => (
   <Container style={styles.container}>
     <Row style={styles.row}>
-      <h2>Choose hiragana</h2>
-    </Row>
-    <Row style={styles.row}>
-      <p>Choose categories</p>
+      <h2>Choose categories</h2>
     </Row>
     <Row style={styles.row}>
       {buttonGroups.map((row) => (
         <ButtonGroup style={styles.buttonGroup} key={row}>
           {row.map((categorie) => (
             <Button
-              variant={categories.includes(categorie) ? 'danger' : 'primary'}
+              variant={categories.includes(categorie) ? 'success' : 'secondary'}
               style={styles.button}
               key={categorie}
               onClick={onCategorieClick(categorie)}
@@ -57,7 +54,19 @@ const HiraganaType = ({ onCategorieClick, categories }) => (
       ))}
     </Row>
     <Row style={styles.row}>
-      <Button size="lg">All</Button>
+      <Button size="lg" onClick={addAllCategories(buttonGroups)}>
+        Select all
+      </Button>
+    </Row>
+    <Row style={styles.row}>
+      <h2>Level</h2>
+    </Row>
+    <Row style={styles.row}>
+      <ButtonGroup>
+        <Button size="lg">Easy</Button>
+        <Button size="lg">Medium</Button>
+        <Button size="lg">Hard</Button>
+      </ButtonGroup>
     </Row>
   </Container>
 );
