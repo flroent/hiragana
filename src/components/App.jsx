@@ -1,14 +1,9 @@
 import React from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Header from './Header';
 import HiraganaType from './HiraganaType';
 
 const styles = {
-  buttonDiv: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginBottom: '4em'
-  },
   wrapper: { fontFamily: "'Rubik', sans-serif" }
 };
 
@@ -64,11 +59,6 @@ class App extends React.Component {
           onCategorieClick={this.onCategorieClick}
           addAllCategories={this.addAllCategories}
         />
-        <div style={styles.buttonDiv}>
-          <Button variant='primary' size='lg'>
-            Play
-          </Button>
-        </div>
       </Container>
     );
   }
