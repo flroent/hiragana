@@ -54,26 +54,29 @@ const HiraganaType = ({
   categories,
   level,
   changeStateLevel,
+  setErrorMode,
+  error,
+  errorType,
 }) => {
   const selectLevel = (selectedLevel) => () => {
     switch (selectedLevel) {
       case 'easy':
         categories.length >= 1
           ? changeStateLevel(selectedLevel)
-          : alert('choose at least one categorie');
+          : setErrorMode(1);
         break;
       case 'medium':
         categories.length >= 2
           ? changeStateLevel(selectedLevel)
-          : alert('choose at least two categorie');
+          : setErrorMode(2);
         break;
       case 'pro':
         categories.length >= 3
           ? changeStateLevel(selectedLevel)
-          : alert('choose at least three categorie');
+          : setErrorMode(3);
         break;
       default:
-        console.log('Sorry, we are out of fuck.');
+        setErrorMode(1);
     }
   };
 
@@ -139,7 +142,18 @@ const HiraganaType = ({
           </Col>
         ))}
       </Row>
-      <Row style={styles.row} />
+      <Row style={styles.titleRow}>
+        {error ? (
+          <Alert variant="danger">
+            Please select
+            {errorType === 1
+              ? ' at least one categorie.'
+              : ` ${errorType} categories.`}
+          </Alert>
+        ) : (
+          <></>
+        )}
+      </Row>
       <Row style={styles.playButtonRow}>
         <Button size="lg" variant="danger">
           Play

@@ -10,7 +10,11 @@ const styles = {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { categories: [], level: '' };
+    this.state = {
+      categories: [],
+      level: '',
+      error: { bool: false, type: '' }
+    };
   }
 
   addCategorieToState = categorie => {
@@ -51,7 +55,19 @@ class App extends React.Component {
   };
 
   changeStateLevel = level => {
-    this.setState({ ...this.state, level: level });
+    this.setState({
+      ...this.state,
+      level: level,
+      error: { bool: false, type: '' }
+    });
+  };
+
+  setErrorMode = error => {
+    this.setState({
+      ...this.state,
+      level: '',
+      error: { bool: true, type: error }
+    });
   };
 
   render() {
@@ -64,6 +80,9 @@ class App extends React.Component {
           addAllCategories={this.addAllCategories}
           level={this.state.level}
           changeStateLevel={this.changeStateLevel}
+          setErrorMode={this.setErrorMode}
+          error={this.state.error.bool}
+          errorType={this.state.error.type}
         />
       </Container>
     );
