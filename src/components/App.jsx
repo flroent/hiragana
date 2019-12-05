@@ -10,7 +10,7 @@ const styles = {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { categories: [], gameMode: [], cells: 0 };
+    this.state = { categories: [], level: '' };
   }
 
   addCategorieToState = categorie => {
@@ -50,6 +50,10 @@ class App extends React.Component {
     };
   };
 
+  changeStateLevel = level => {
+    this.setState({ ...this.state, level: level });
+  };
+
   render() {
     return (
       <Container style={styles.wrapper} className='App'>
@@ -58,6 +62,8 @@ class App extends React.Component {
           categories={this.state.categories}
           onCategorieClick={this.onCategorieClick}
           addAllCategories={this.addAllCategories}
+          level={this.state.level}
+          changeStateLevel={this.changeStateLevel}
         />
       </Container>
     );

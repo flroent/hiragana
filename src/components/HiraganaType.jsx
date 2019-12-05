@@ -7,6 +7,7 @@ import {
   Row,
   Col,
   Button,
+  Alert,
 } from 'react-bootstrap';
 
 const styles = {
@@ -47,69 +48,105 @@ const categoriesButtons = [
 
 const levels = ['easy', 'medium', 'pro'];
 
-const HiraganaType = ({ onCategorieClick, addAllCategories, categories }) => (
-  <Container style={styles.container}>
-    <Row style={styles.titleRow}>
-      <Col style={styles.titleCol} xs="12" lg="9">
-        <h2>Categories</h2>
-      </Col>
-    </Row>
-    <Row style={styles.buttonRow}>
-      {categoriesButtons[0].map((categorie) => (
-        <Col xs="4" lg="1">
-          <Button
-            style={styles.button}
-            variant={categories.includes(categorie) ? 'success' : 'info'}
-            key={categorie}
-            onClick={onCategorieClick(categorie)}
-          >
-            {categorie.toUpperCase()}
-          </Button>
+const HiraganaType = ({
+  onCategorieClick,
+  addAllCategories,
+  categories,
+  level,
+  changeStateLevel,
+}) => {
+  const selectLevel = (selectedLevel) => () => {
+    switch (selectedLevel) {
+      case 'easy':
+        categories.length >= 1
+          ? changeStateLevel(selectedLevel)
+          : alert('choose at least one categorie');
+        break;
+      case 'medium':
+        categories.length >= 2
+          ? changeStateLevel(selectedLevel)
+          : alert('choose at least two categorie');
+        break;
+      case 'pro':
+        categories.length >= 3
+          ? changeStateLevel(selectedLevel)
+          : alert('choose at least three categorie');
+        break;
+      default:
+        console.log('Sorry, we are out of fuck.');
+    }
+  };
+
+  return (
+    <Container style={styles.container}>
+      <Row style={styles.titleRow}>
+        <Col style={styles.titleCol} xs="12" lg="9">
+          <h2>Categories</h2>
         </Col>
-      ))}
-    </Row>
-    <Row style={styles.buttonRow}>
-      {categoriesButtons[1].map((categorie) => (
+      </Row>
+      <Row style={styles.buttonRow}>
+        {categoriesButtons[0].map((categorie) => (
+          <Col xs="4" lg="1">
+            <Button
+              style={styles.button}
+              variant={categories.includes(categorie) ? 'success' : 'info'}
+              key={categorie}
+              onClick={onCategorieClick(categorie)}
+            >
+              {categorie.toUpperCase()}
+            </Button>
+          </Col>
+        ))}
+      </Row>
+      <Row style={styles.buttonRow}>
+        {categoriesButtons[1].map((categorie) => (
+          <Col xs="12" lg="3">
+            <Button
+              style={styles.button}
+              variant={categories.includes(categorie) ? 'success' : 'info'}
+              key={categorie}
+              onClick={onCategorieClick(categorie)}
+            >
+              {categorie.toUpperCase()}
+            </Button>
+          </Col>
+        ))}
         <Col xs="12" lg="3">
           <Button
             style={styles.button}
-            variant={categories.includes(categorie) ? 'success' : 'info'}
-            key={categorie}
-            onClick={onCategorieClick(categorie)}
+            onClick={addAllCategories(categoriesButtons)}
           >
-            {categorie.toUpperCase()}
+            Select all
           </Button>
         </Col>
-      ))}
-      <Col xs="12" lg="3">
-        <Button
-          style={styles.button}
-          onClick={addAllCategories(categoriesButtons)}
-        >
-          Select all
+      </Row>
+      <Row style={styles.titleRow}>
+        <Col style={styles.titleCol} xs="12" lg="9">
+          <h2>Level</h2>
+        </Col>
+      </Row>
+      <Row style={styles.buttonRow}>
+        {levels.map((arrayLevel) => (
+          <Col xs="12" lg="3">
+            <Button
+              style={styles.button}
+              variant={arrayLevel === level ? 'success' : 'info'}
+              key={arrayLevel}
+              onClick={selectLevel(arrayLevel)}
+            >
+              {arrayLevel.toUpperCase()}
+            </Button>
+          </Col>
+        ))}
+      </Row>
+      <Row style={styles.row} />
+      <Row style={styles.playButtonRow}>
+        <Button size="lg" variant="danger">
+          Play
         </Button>
-      </Col>
-    </Row>
-    <Row style={styles.titleRow}>
-      <Col style={styles.titleCol} xs="12" lg="9">
-        <h2>Level</h2>
-      </Col>
-    </Row>
-    <Row style={styles.buttonRow}>
-      {levels.map((level) => (
-        <Col xs="12" lg="3">
-          <Button style={styles.button} variant="info" key={level}>
-            {level.toUpperCase()}
-          </Button>
-        </Col>
-      ))}
-    </Row>
-    <Row style={styles.playButtonRow}>
-      <Button size="lg" variant="danger">
-        Play
-      </Button>
-    </Row>
-  </Container>
-);
+      </Row>
+    </Container>
+  );
+};
 
 export default HiraganaType;
