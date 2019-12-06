@@ -24,6 +24,24 @@ class App extends React.Component {
     }));
   };
 
+  resetLevel = deletedCategorie => {
+    const { categories, level } = this.state;
+    const numberOfCategories = categories.length - 1;
+    if (
+      (level === '4' && numberOfCategories === 0) ||
+      (level === '8' && numberOfCategories < 2) ||
+      (level === '16' && numberOfCategories < 3)
+    ) {
+      this.setState(({ categories }) => ({
+        ...this.state,
+        categories: categories.filter(
+          categorie => categorie !== deletedCategorie
+        ),
+        level: ''
+      }));
+    }
+  };
+
   removeCategorieToState = categorie => {
     this.setState(({ categories }) => ({
       ...this.state,
@@ -31,6 +49,7 @@ class App extends React.Component {
         actualCategories => actualCategories !== categorie
       )
     }));
+    this.resetLevel(categorie);
   };
 
   onCategorieClick = categorie => {

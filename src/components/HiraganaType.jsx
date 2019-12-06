@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
@@ -46,7 +47,7 @@ const categoriesButtons = [
   ['dakutens', 'composés'],
 ];
 
-const levels = ['easy', 'medium', 'pro'];
+const levels = ['4', '8', '16'];
 
 const HiraganaType = ({
   onCategorieClick,
@@ -60,17 +61,17 @@ const HiraganaType = ({
 }) => {
   const selectLevel = (selectedLevel) => () => {
     switch (selectedLevel) {
-      case 'easy':
+      case '4':
         categories.length >= 1
           ? changeStateLevel(selectedLevel)
           : setErrorMode(1);
         break;
-      case 'medium':
+      case '8':
         categories.length >= 2
           ? changeStateLevel(selectedLevel)
           : setErrorMode(2);
         break;
-      case 'pro':
+      case '16':
         categories.length >= 3
           ? changeStateLevel(selectedLevel)
           : setErrorMode(3);
@@ -89,7 +90,7 @@ const HiraganaType = ({
       </Row>
       <Row style={styles.buttonRow}>
         {categoriesButtons[0].map((categorie) => (
-          <Col xs="4" lg="1">
+          <Col xs="4" lg="1" key={`${categorie}Col`}>
             <Button
               style={styles.button}
               variant={categories.includes(categorie) ? 'success' : 'info'}
@@ -103,7 +104,7 @@ const HiraganaType = ({
       </Row>
       <Row style={styles.buttonRow}>
         {categoriesButtons[1].map((categorie) => (
-          <Col xs="12" lg="3">
+          <Col xs="12" lg="3" key={`${categorie}Col`}>
             <Button
               style={styles.button}
               variant={categories.includes(categorie) ? 'success' : 'info'}
@@ -125,12 +126,12 @@ const HiraganaType = ({
       </Row>
       <Row style={styles.titleRow}>
         <Col style={styles.titleCol} xs="12" lg="9">
-          <h2>Level</h2>
+          <h2>Cells</h2>
         </Col>
       </Row>
       <Row style={styles.buttonRow}>
         {levels.map((arrayLevel) => (
-          <Col xs="12" lg="3">
+          <Col xs="12" lg="3" key={`${arrayLevel}Col`}>
             <Button
               style={styles.button}
               variant={arrayLevel === level ? 'success' : 'info'}
@@ -145,17 +146,17 @@ const HiraganaType = ({
       <Row style={styles.titleRow}>
         {error ? (
           <Alert variant="danger">
-            Please select
-            {errorType === 1
-              ? ' at least one categorie.'
-              : ` ${errorType} categories.`}
+            Please select at least
+            {` ${errorType} `}
+            categorie
+            {errorType === 1 ? '.' : 's .'}
           </Alert>
         ) : (
           <></>
         )}
       </Row>
       <Row style={styles.playButtonRow}>
-        <Button size="lg" variant="danger">
+        <Button size="lg" variant="danger" disabled={level === ''}>
           Play
         </Button>
       </Row>
