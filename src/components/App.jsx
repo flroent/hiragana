@@ -1,7 +1,10 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import HiraganaType from './HiraganaType';
+import Play from './Play';
+import Error404 from './Error404';
 
 const styles = {
   wrapper: { fontFamily: "'Rubik', sans-serif" }
@@ -91,19 +94,31 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container style={styles.wrapper} className='App'>
-        <Header />
-        <HiraganaType
-          categories={this.state.categories}
-          onCategorieClick={this.onCategorieClick}
-          addAllCategories={this.addAllCategories}
-          level={this.state.level}
-          changeStateLevel={this.changeStateLevel}
-          setErrorMode={this.setErrorMode}
-          error={this.state.error.bool}
-          errorType={this.state.error.type}
-        />
-      </Container>
+      <Router>
+        <Container style={styles.wrapper} className='App'>
+          <Switch>
+            <Route exact path='/'>
+              <Header />
+              <HiraganaType
+                categories={this.state.categories}
+                onCategorieClick={this.onCategorieClick}
+                addAllCategories={this.addAllCategories}
+                level={this.state.level}
+                changeStateLevel={this.changeStateLevel}
+                setErrorMode={this.setErrorMode}
+                error={this.state.error.bool}
+                errorType={this.state.error.type}
+              />
+            </Route>
+            <Route exact path='/play'>
+              <Play />
+            </Route>
+            <Route>
+              <Error404 />
+            </Route>
+          </Switch>
+        </Container>
+      </Router>
     );
   }
 }
