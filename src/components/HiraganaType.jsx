@@ -10,6 +10,7 @@ import {
   Button,
   Alert,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const styles = {
   container: {
@@ -156,7 +157,13 @@ const HiraganaType = ({
         )}
       </Row>
       <Row style={styles.playButtonRow}>
-        <Button size="lg" variant="danger" disabled={level === ''}>
+        <Button
+          as={level === '' ? Button : Link}
+          to="/play"
+          size="lg"
+          variant="danger"
+          disabled={level === ''}
+        >
           Play
         </Button>
       </Row>
