@@ -22,6 +22,9 @@ const styles = {
   button: {
     width: '100%',
     marginBottom: '1em',
+    fontSize: '1.2rem',
+    display: 'flex',
+    justifyContent: 'center',
   },
   buttonRow: {
     display: 'flex',
@@ -48,7 +51,7 @@ const categoriesButtons = [
   ['dakutens', 'composés'],
 ];
 
-const levels = ['4', '8', '16'];
+const levels = ['4', '8', '12'];
 
 const HiraganaType = ({
   onCategorieClick,
@@ -72,7 +75,7 @@ const HiraganaType = ({
           ? changeStateLevel(selectedLevel)
           : setErrorMode(2);
         break;
-      case '16':
+      case '12':
         categories.length >= 3
           ? changeStateLevel(selectedLevel)
           : setErrorMode(3);
@@ -134,6 +137,7 @@ const HiraganaType = ({
         {levels.map((arrayLevel) => (
           <Col xs="12" lg="3" key={`${arrayLevel}Col`}>
             <Button
+              className={arrayLevel === '12' ? 'd-none d-lg-block' : ''}
               style={styles.button}
               variant={arrayLevel === level ? 'success' : 'info'}
               key={arrayLevel}
@@ -150,7 +154,7 @@ const HiraganaType = ({
             Please select at least
             {` ${errorType} `}
             categorie
-            {errorType === 1 ? '.' : 's .'}
+            {errorType === 1 ? ' .' : 's .'}
           </Alert>
         ) : (
           <></>
