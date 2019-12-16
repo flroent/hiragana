@@ -5,99 +5,103 @@ import {
   Container,
   Col,
   Row,
-  Card
+  Button,
+  Nav,
 } from 'react-bootstrap';
+import './ResponsiveFonts.css';
 
 const styles = {
   mainContainer: {
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
-    padding: '0'
+    padding: '0',
   },
   navContainer: {
-    height: '10%'
+    height: '10%',
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   navRow: { height: '20%' },
   upContainer: {
-    height: '60%',
-    padding: '1em'
+    padding: '1em',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
-
+  upSpan: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   kanjiUpRow: {
     height: '50%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   downContainer: {
-    backgroundColor: 'grey',
-    borderRadius: '.3em',
-    height: '30%',
     padding: '1em',
-    marginBottom: '2em'
+    marginBottom: '2em',
   },
   kanjiRow: {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   kanjiCol: {
     padding: '0',
     height: '50%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-around',
   },
-  kanjiCard: {
-    width: '80%',
-    height: '60%',
+  kanjiButton: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
+
     justifyContent: 'center',
-    fontSize: '1.2rem'
-  }
+  },
 };
 
-const kanjis = [
-  'SHU',
-  'SH1',
-  'SHE',
-  'SHR',
-  'SHD',
-  'SHF',
-  'SHG',
-  'SHP'
-  // 'SHU',
-  // 'SH1',
-  // 'SHE',
-  // 'SHR',
-];
+const kanjis = ['ぴぴ', 'ぴ', 'し', 'しゃ', 'しゃ', 'しゃ', 'しゃ', 'しゃ'];
 
 const Play = () => (
   <Container style={styles.mainContainer}>
     <Container style={styles.navContainer}>
-      <Row style={styles.navRow}>x</Row>
+      <Row style={styles.navRow}>
+        <Nav activeKey="/home">
+          <Nav.Item>
+            <Nav.Link className="kanjiButton" href="/">
+              Home
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </Row>
     </Container>
-    <Container style={styles.upContainer}></Container>
-    <Container style={styles.downContainer}>
+    <Container className="upContainer" style={styles.upContainer}>
+      <span className="upSpan" style={styles.upSpan}>
+        SHU
+      </span>
+    </Container>
+    <Container className="downContainer" style={styles.downContainer}>
       <Row style={styles.kanjiRow}>
-        {kanjis.map(kanji => (
+        {kanjis.map((kanji) => (
           <Col
-            xs='3'
-            xl='1'
+            xs="3"
+            xl="1"
             style={styles.kanjiCol}
-            key={kanjis.findIndex(el => el === kanji)}
+            key={kanjis.findIndex((el) => el === kanji)}
           >
-            <Card
-              style={styles.kanjiCard}
-              bg='primary'
-              text='white'
-              key={kanji}
+            <Button
+              className="kanjiButton"
+              style={styles.kanjiButton}
+              bg="primary"
+              text="white"
             >
               {kanji}
-            </Card>
+            </Button>
           </Col>
         ))}
       </Row>
