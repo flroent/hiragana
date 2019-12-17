@@ -11,7 +11,7 @@ import {
 const styles = {
   jumbotron: {
     background: 'none',
-    height: '70vh',
+    height: '80%',
   },
   container: {
     display: 'flex',

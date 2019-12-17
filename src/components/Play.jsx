@@ -14,7 +14,7 @@ const styles = {
   mainContainer: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
+    height: '100%',
     padding: '0',
   },
   navContainer: {
@@ -24,6 +24,7 @@ const styles = {
   },
   navRow: { height: '20%' },
   upContainer: {
+    height: '60%',
     padding: '1em',
     display: 'flex',
     flexDirection: 'column',
@@ -40,6 +41,7 @@ const styles = {
     alignItems: 'center',
   },
   downContainer: {
+    height: '30%',
     padding: '1em',
     marginBottom: '2em',
   },

@@ -1,62 +1,70 @@
+/* RESPONSIVE */
+
 .upSpan {
   font-size: 8rem;
 }
 
-.kanjiButton {
+.kanjiButton,
+.categorieButton {
   font-size: 1rem;
+}
+
+.kanjiButton {
   width: 90%;
   height: 80%;
 }
 
-.upContainer {
-  height: 60%;
-}
-
-.downContainer {
-  height: 30%;
-}
-
-@media (min-width: 560px) {
-  .upContainer {
-    height: 40%;
-  }
-
-  .downContainer {
-    height: 50%;
-  }
-}
-
-@media (min-width: 768px) and (min-height: 400px) {
+@media (min-width: 768px) {
   .upSpan {
-    font-size: 12rem;
+    font-size: 10rem;
+  }
+  .kanjiButton,
+  .categorieButton {
+    font-size: 1.8rem;
   }
   .kanjiButton {
-    font-size: 1.8rem;
     width: 60%;
     height: 60%;
-  }
-
-  .upContainer {
-    height: 60%;
-  }
-
-  .downContainer {
-    height: 30%;
-  }
-}
-
-@media (min-width: 992px) {
-  .upSpan {
-    font-size: 12rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .upSpan {
-    font-size: 12rem;
-  }
-  .kanjiButton {
+  .kanjiButton,
+  .categorieButton {
     font-size: 1.4rem;
+  }
+
+  .kanjiButton {
     width: 80%;
   }
+}
+
+/* EFFECTS */
+@keyframes tada {
+  0% {
+    transform: scale(1);
+  }
+  10%,
+  20% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40%,
+  60%,
+  80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+.categorieButton:hover,
+.kanjiButton:hover {
+  transform: scale(1.1);
 }
