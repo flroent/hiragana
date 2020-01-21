@@ -49,7 +49,12 @@ const categoriesButtons = [
   ['Dakuten', 'Handakuten'],
 ];
 
-const HiraganaType = ({ onCategorieClick, addAllCategories, categories }) => (
+const HiraganaType = ({
+  onCategorieClick,
+  addAllCategories,
+  categories,
+  onPlayClick,
+}) => (
   <Container style={styles.container}>
     <Row style={styles.titleRow}>
       <Col style={styles.titleCol} xs="12" xl="9">

@@ -5,6 +5,7 @@ import './ResponsiveFonts.css';
 import Home from './Home';
 import Play from './Play';
 import Error404 from './Error404';
+import { basics } from '../store';
 
 const styles = {
   wrapper: { fontFamily: "'Rubik', sans-serif", height: '100vh' }
@@ -14,14 +15,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: []
+      categories: [],
+      hiraganas: []
     };
   }
 
   addCategorieToState = categorie => {
-    this.setState(({ categories }) => ({
+    const kanas = basics.filter(basicCat => basicCat.cat === categorie);
+    this.setState(({ categories, hiraganas }) => ({
       ...this.state,
-      categories: [...categories, categorie]
+      categories: [...categories, categorie],
+      hiraganas: [...hiraganas, ...kanas[0].kanas]
     }));
   };
 
@@ -55,6 +59,17 @@ class App extends React.Component {
     };
   };
 
+  addHiraganas = categorie => {
+    basics.map(basicCat =>
+      basicCat.cat === categorie
+        ? this.setState(({ hiraganas }) => ({
+            ...this.state,
+            hiraganas: [...hiraganas, ...basicCat.kanas]
+          }))
+        : false
+    );
+  };
+
   render() {
     return (
       <Container style={styles.wrapper} className='App'>
@@ -67,7 +82,7 @@ class App extends React.Component {
             />
           </Route>
           <Route exact path='/play'>
-            <Play />
+            <Play categories={this.state.categories} />
           </Route>
           <Route>
             <Error404 />

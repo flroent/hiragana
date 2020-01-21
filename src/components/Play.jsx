@@ -69,7 +69,7 @@ const styles = {
 
 const kanjis = ['ぴぴ', 'ぴ', 'し', 'しゃ', 'しゃ', 'しゃ', 'しゃ', 'しゃ'];
 
-const Play = () => (
+const Play = ({ categories }) => (
   <Container style={styles.mainContainer}>
     <Container style={styles.navContainer}>
       <Row style={styles.navRow}>
