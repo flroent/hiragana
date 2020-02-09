@@ -1,4 +1,4 @@
-export const basics = [
+const hiraganasList = [
   {
     cat: 'a',
     kanas: [
@@ -90,52 +90,29 @@ export const basics = [
       { eng: 'n', jap: 'ん' },
     ],
   },
-];
-
-export const dakutens = [
   {
-    cat: 'g',
+    cat: 'dakutens',
     kanas: [
       { eng: 'ga', jap: 'が' },
       { eng: 'gi', jap: 'ぎ' },
       { eng: 'gu', jap: 'ぐ' },
       { eng: 'ge', jap: 'げ' },
       { eng: 'go', jap: 'ご' },
-    ],
-  },
-  {
-    cat: 'z',
-    kanas: [
       { eng: 'za', jap: 'ざ' },
       { eng: 'ji', jap: 'じ' },
       { eng: 'zu', jap: 'ず' },
       { eng: 'ze', jap: 'ぜ' },
       { eng: 'zo', jap: 'ぞ' },
-    ],
-  },
-  {
-    cat: 'd',
-    kanas: [
       { eng: 'da', jap: 'だ' },
       { eng: 'di', jap: 'ぢ' },
       { eng: 'du', jap: 'づ' },
       { eng: 'de', jap: 'で' },
       { eng: 'do', jap: 'ど' },
-    ],
-  },
-  {
-    cat: 'b',
-    kanas: [
       { eng: 'ba', jap: 'ば' },
       { eng: 'bi', jap: 'び' },
       { eng: 'bu', jap: 'ぶ' },
       { eng: 'be', jap: 'べ' },
       { eng: 'bo', jap: 'ど' },
-    ],
-  },
-  {
-    cat: 'p',
-    kanas: [
       { eng: 'pa', jap: 'ぱ' },
       { eng: 'pi', jap: 'ぴ' },
       { eng: 'pu', jap: 'ぷ' },
@@ -143,95 +120,44 @@ export const dakutens = [
       { eng: 'po', jap: 'ぽ' },
     ],
   },
-];
-
-export const comps = [
   {
-    cat: 'k',
+    cat: 'handakutens',
     kanas: [
       { eng: 'kya', jap: 'きゃ' },
       { eng: 'kyu', jap: 'きゅ' },
       { eng: 'kyo', jap: 'きょ' },
-    ],
-  },
-  {
-    cat: 'g',
-    kanas: [
       { eng: 'gya', jap: 'ぎゃ' },
       { eng: 'gyu', jap: 'ぎゅ' },
       { eng: 'gyo', jap: 'ぎょ' },
-    ],
-  },
-  {
-    cat: 's',
-    kanas: [
       { eng: 'sha', jap: 'しゃ' },
       { eng: 'shu', jap: 'しゅ' },
       { eng: 'sho', jap: 'しょ' },
-    ],
-  },
-  {
-    cat: 'j',
-    kanas: [
       { eng: 'ja', jap: 'じゃ' },
       { eng: 'ju', jap: 'じゅ' },
       { eng: 'jo', jap: 'じょ' },
-    ],
-  },
-  {
-    cat: 'c',
-    kanas: [
       { eng: 'cha', jap: 'じゃ' },
       { eng: 'chu', jap: 'じゅ' },
       { eng: 'cho', jap: 'じょ' },
-    ],
-  },
-  {
-    cat: 'n',
-    kanas: [
       { eng: 'nya', jap: 'にゃ' },
       { eng: 'nyu', jap: 'にゅ' },
       { eng: 'nyo', jap: 'にょ' },
-    ],
-  },
-  {
-    cat: 'h',
-    kanas: [
       { eng: 'hya', jap: 'ひゃ' },
       { eng: 'hyu', jap: 'ひゅ' },
       { eng: 'hyo', jap: 'ひょ' },
-    ],
-  },
-  {
-    cat: 'b',
-    kanas: [
       { eng: 'bya', jap: 'びゃ' },
       { eng: 'byu', jap: 'びゅ' },
       { eng: 'byo', jap: 'びょ' },
-    ],
-  },
-  {
-    cat: 'p',
-    kanas: [
       { eng: 'pya', jap: 'ぴゃ' },
       { eng: 'pyu', jap: 'ぴゅ' },
       { eng: 'pyo', jap: 'ぴょ' },
-    ],
-  },
-  {
-    cat: 'm',
-    kanas: [
       { eng: 'mya', jap: 'みゃ' },
       { eng: 'myu', jap: 'みゅ' },
       { eng: 'myo', jap: 'みょ' },
-    ],
-  },
-  {
-    cat: 'r',
-    kanas: [
       { eng: 'rya', jap: 'りゃ' },
       { eng: 'ryu', jap: 'りゅ' },
       { eng: 'ryo', jap: 'りょ' },
     ],
   },
 ];
+
+export default hiraganasList;

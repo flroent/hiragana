@@ -67,9 +67,7 @@ const styles = {
   },
 };
 
-const kanjis = ['ぴぴ', 'ぴ', 'し', 'しゃ', 'しゃ', 'しゃ', 'しゃ', 'しゃ'];
-
-const Play = ({ categories }) => (
+const Play = ({ hiraganaToGuess, guessList, onPlayClick }) => (
   <Container style={styles.mainContainer}>
     <Container style={styles.navContainer}>
       <Row style={styles.navRow}>
@@ -84,23 +82,24 @@ const Play = ({ categories }) => (
     </Container>
     <Container className="upContainer" style={styles.upContainer}>
       <span className="upSpan" style={styles.upSpan}>
-        SHU
+        {hiraganaToGuess.eng ? hiraganaToGuess.eng.toUpperCase() : 'Err'}
       </span>
     </Container>
     <Container className="downContainer" style={styles.downContainer}>
       <Row style={styles.kanjiRow}>
-        {kanjis.map((kanji) => (
+        {guessList.map((kanji) => (
           <Col
             xs="3"
             xl="1"
             style={styles.kanjiCol}
-            key={kanjis.findIndex((el) => el === kanji)}
+            key={guessList.findIndex((el) => el === kanji)}
           >
             <Button
               className="kanjiButton"
               style={styles.kanjiButton}
               bg="primary"
               text="white"
+              onClick={kanji === hiraganaToGuess.jap ? onPlayClick() : false}
             >
               {kanji}
             </Button>

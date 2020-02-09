@@ -5,7 +5,7 @@ import './ResponsiveFonts.css';
 import Home from './Home';
 import Play from './Play';
 import Error404 from './Error404';
-import { basics } from '../store';
+import hiraganasList from '../store';
 
 const styles = {
   wrapper: { fontFamily: "'Rubik', sans-serif", height: '100vh' }
@@ -16,12 +16,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       categories: [],
-      hiraganas: []
+      hiraganas: [],
+      hiraganaToGuess: '',
+      guessList: []
     };
   }
 
   addCategorieToState = categorie => {
-    const kanas = basics.filter(basicCat => basicCat.cat === categorie);
+    const kanas = hiraganasList.filter(
+      basicCat => basicCat.cat === categorie.toLowerCase()
+    );
     this.setState(({ categories, hiraganas }) => ({
       ...this.state,
       categories: [...categories, categorie],
@@ -30,10 +34,16 @@ class App extends React.Component {
   };
 
   removeCategorieToState = categorie => {
-    this.setState(({ categories }) => ({
+    const kanas = hiraganasList.filter(
+      basicCat => basicCat.cat === categorie.toLowerCase()
+    );
+    this.setState(({ categories, hiraganas }) => ({
       ...this.state,
       categories: categories.filter(
         actualCategories => actualCategories !== categorie
+      ),
+      hiraganas: hiraganas.filter(
+        actualHiraganas => !kanas[0].kanas.includes(actualHiraganas)
       )
     }));
   };
@@ -59,15 +69,59 @@ class App extends React.Component {
     };
   };
 
-  addHiraganas = categorie => {
-    basics.map(basicCat =>
-      basicCat.cat === categorie
-        ? this.setState(({ hiraganas }) => ({
-            ...this.state,
-            hiraganas: [...hiraganas, ...basicCat.kanas]
-          }))
-        : false
+  randomHiragana = () => {
+    const { hiraganas } = this.state;
+    let hiragana = this.state.hiraganas[
+      Math.floor(Math.random() * hiraganas.length)
+    ];
+    return hiragana;
+  };
+
+  randomHiraganaCategories = () => {
+    const cats = [];
+    for (let i = 0; i <= 7; i++) {
+      let num = Math.floor(Math.random() * Math.floor(hiraganasList.length));
+      if (!cats.includes(num)) {
+        cats.push(num);
+      } else {
+        let newNum = num;
+        while (cats.includes(newNum)) {
+          newNum = Math.floor(Math.random() * Math.floor(hiraganasList.length));
+        }
+        cats.push(newNum);
+      }
+    }
+    return cats;
+  };
+
+  randomHiraganaList = () => {
+    const cats = this.randomHiraganaCategories();
+    const kanas = cats.map(
+      cat =>
+        hiraganasList[cat].kanas[
+          Math.floor(
+            Math.random() * Math.floor(hiraganasList[cat].kanas.length)
+          )
+        ].jap
     );
+    return kanas;
+  };
+
+  onPlayClick = () => {
+    return () => {
+      const kanaGuess = this.randomHiragana();
+      const casesChoice = this.randomHiraganaList();
+      if (!casesChoice.includes(kanaGuess)) {
+        casesChoice[
+          Math.floor(Math.random() * Math.floor(casesChoice.length))
+        ] = kanaGuess.jap;
+      }
+      this.setState(() => ({
+        ...this.state,
+        hiraganaToGuess: kanaGuess,
+        guessList: casesChoice
+      }));
+    };
   };
 
   render() {
@@ -79,10 +133,15 @@ class App extends React.Component {
               categories={this.state.categories}
               onCategorieClick={this.onCategorieClick}
               addAllCategories={this.addAllCategories}
+              onPlayClick={this.onPlayClick}
             />
           </Route>
           <Route exact path='/play'>
-            <Play categories={this.state.categories} />
+            <Play
+              hiraganaToGuess={this.state.hiraganaToGuess}
+              guessList={this.state.guessList}
+              onPlayClick={this.onPlayClick}
+            />
           </Route>
           <Route>
             <Error404 />

@@ -46,7 +46,7 @@ const styles = {
 
 const categoriesButtons = [
   ['a', 'k', 's', 't', 'n', 'h', 'm', 'r', 'ywn'],
-  ['Dakuten', 'Handakuten'],
+  ['Dakutens', 'Handakutens'],
 ];
 
 const HiraganaType = ({
@@ -109,6 +109,7 @@ const HiraganaType = ({
         size="lg"
         variant="danger"
         disabled={categories.length < 1}
+        onClick={onPlayClick()}
       >
         Play
       </Button>
