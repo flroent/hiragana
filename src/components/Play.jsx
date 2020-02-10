@@ -7,101 +7,53 @@ import {
   Row,
   Button,
   Nav,
+  Badge,
 } from 'react-bootstrap';
 import './ResponsiveFonts.css';
 
-const styles = {
-  mainContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    padding: '0',
-  },
-  navContainer: {
-    height: '10%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  navRow: { height: '20%' },
-  upContainer: {
-    height: '60%',
-    padding: '1em',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  upSpan: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  kanjiUpRow: {
-    height: '50%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  downContainer: {
-    height: '30%',
-    padding: '1em',
-    marginBottom: '2em',
-  },
-  kanjiRow: {
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  kanjiCol: {
-    padding: '0',
-    height: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  kanjiButton: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-
-    justifyContent: 'center',
-  },
-};
+const test = ['きゃ', 'しょ', 'しょ', 'しょ', 'しょ', 'しょ', 'しょ', 'しょ'];
 
 const Play = ({ hiraganaToGuess, guessList, onPlayClick }) => (
-  <Container style={styles.mainContainer}>
-    <Container style={styles.navContainer}>
-      <Row style={styles.navRow}>
-        <Nav activeKey="/home">
-          <Nav.Item>
-            <Nav.Link className="kanjiButton" href="/">
-              Home
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
+  <Container className="h-100 p-0 d-flex flex-column justify-content-between ">
+    <Nav className="justify-content-end" activeKey="/home">
+      <Nav.Item>
+        <Nav.Link className="pt-3 pr-0" href="/">
+          <Button lg variant="success">
+            Home
+          </Button>
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
+    <Container
+      className="d-flex h-50 flex-column justify-content-center"
+      style={{ borderRadius: '15px', backgroundColor: 'lightGray' }}
+    >
+      <Row>
+        <Col
+          className="h-100 d-flex flex-column justify-content-center"
+          xs="12"
+        >
+          <span className="text-center display-1">tst</span>
+        </Col>
       </Row>
     </Container>
-    <Container className="upContainer" style={styles.upContainer}>
-      <span className="upSpan" style={styles.upSpan}>
-        {hiraganaToGuess.eng ? hiraganaToGuess.eng.toUpperCase() : 'Err'}
-      </span>
-    </Container>
-    <Container className="downContainer" style={styles.downContainer}>
-      <Row style={styles.kanjiRow}>
-        {guessList.map((kanji) => (
+    <Container className="mb-1 h-25">
+      <Row className="d-flex h-75 justify-content-center">
+        {test.map((kanji) => (
           <Col
+            className="p-1"
             xs="3"
             xl="1"
-            style={styles.kanjiCol}
-            key={guessList.findIndex((el) => el === kanji)}
+            key={test.findIndex((el) => el === kanji)}
           >
             <Button
-              className="kanjiButton"
-              style={styles.kanjiButton}
-              bg="primary"
-              text="white"
+              lg
+              className="w-100 h-75 p-0 mb-1 d-flex flex-column justify-content-center align-items-center"
+              variant="warning"
               onClick={kanji === hiraganaToGuess.jap ? onPlayClick() : false}
+              size="lg"
             >
-              {kanji}
+              <span className="text-center">{kanji}</span>
             </Button>
           </Col>
         ))}

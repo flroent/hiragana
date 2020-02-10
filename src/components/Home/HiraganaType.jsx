@@ -67,7 +67,7 @@ const HiraganaType = ({
           <Button
             className="categorieButton"
             style={styles.button}
-            variant={categories.includes(categorie) ? 'success' : 'info'}
+            variant={categories.includes(categorie) ? 'success' : 'warning'}
             key={categorie}
             onClick={onCategorieClick(categorie)}
           >
@@ -82,7 +82,7 @@ const HiraganaType = ({
           <Button
             className="categorieButton"
             style={styles.button}
-            variant={categories.includes(categorie) ? 'success' : 'info'}
+            variant={categories.includes(categorie) ? 'success' : 'warning'}
             key={categorie}
             onClick={onCategorieClick(categorie)}
           >
