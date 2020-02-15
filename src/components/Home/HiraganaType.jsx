@@ -11,39 +11,6 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const styles = {
-  container: {
-    padding: '2em 1em',
-    backgroundColor: 'lightGray',
-    borderRadius: '1em',
-    marginBottom: '8em',
-  },
-  button: {
-    width: '100%',
-    marginBottom: '1em',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  buttonRow: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  playButtonRow: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '4em 0',
-  },
-
-  titleRow: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '2em 0',
-  },
-  titleCol: {
-    padding: '0',
-  },
-};
-
 const categoriesButtons = [
   ['a', 'k', 's', 't', 'n', 'h', 'm', 'r', 'ywn'],
   ['Dakutens', 'Handakutens'],
@@ -55,19 +22,23 @@ const HiraganaType = ({
   categories,
   onPlayClick,
 }) => (
-  <Container style={styles.container}>
-    <Row style={styles.titleRow}>
-      <Col style={styles.titleCol} xs="12" xl="9">
+  <Container
+    className="p-5 mb-5"
+    style={{ backgroundColor: 'lightGray', borderRadius: '1em' }}
+  >
+    <Row className="mb-5">
+      <Col className="p-0" xs="12" xl="9">
         <h2 className="title">Categories</h2>
+        <span className="text-black-50">Pick at least one </span>
+        <span>&#128522;</span>
       </Col>
     </Row>
-    <Row style={styles.buttonRow}>
+    <Row className="d-flex justify-content-center">
       {categoriesButtons[0].map((categorie) => (
-        <Col xs="4" xl="1" key={`${categorie}Col`}>
+        <Col className="p-1" xs="4" lg="1" key={`${categorie}Col`}>
           <Button
-            className="categorieButton"
-            style={styles.button}
-            variant={categories.includes(categorie) ? 'success' : 'warning'}
+            className="w-100 font-weight-bolder"
+            variant={categories.includes(categorie) ? 'success' : 'light'}
             key={categorie}
             onClick={onCategorieClick(categorie)}
           >
@@ -76,13 +47,12 @@ const HiraganaType = ({
         </Col>
       ))}
     </Row>
-    <Row style={styles.buttonRow}>
+    <Row className="d-flex justify-content-center mb-5">
       {categoriesButtons[1].map((categorie) => (
-        <Col xs="12" lg="4" xl="3" key={`${categorie}Col`}>
+        <Col className="p-1" xs="12" lg="3" key={`${categorie}Col`}>
           <Button
-            className="categorieButton"
-            style={styles.button}
-            variant={categories.includes(categorie) ? 'success' : 'warning'}
+            className="w-100 font-weight-bolder"
+            variant={categories.includes(categorie) ? 'success' : 'light'}
             key={categorie}
             onClick={onCategorieClick(categorie)}
           >
@@ -90,20 +60,18 @@ const HiraganaType = ({
           </Button>
         </Col>
       ))}
-      <Col xs="12" lg="4" xl="3">
+      <Col className="p-1" xs="12" lg="3">
         <Button
-          className="categorieButton"
-          style={styles.button}
+          className="w-100 font-weight-bolder"
           onClick={addAllCategories(categoriesButtons)}
         >
           Select all
         </Button>
       </Col>
     </Row>
-
-    <Row style={styles.playButtonRow}>
+    <Row className="d-flex justify-content-center">
       <Button
-        className="categorieButton"
+        className="font-weight-bolder"
         as={categories.length < 1 ? Button : Link}
         to="/play"
         size="lg"

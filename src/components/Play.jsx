@@ -14,11 +14,11 @@ import './ResponsiveFonts.css';
 const test = ['きゃ', 'しょ', 'しょ', 'しょ', 'しょ', 'しょ', 'しょ', 'しょ'];
 
 const Play = ({ hiraganaToGuess, guessList, onPlayClick }) => (
-  <Container className="h-100 p-0 d-flex flex-column justify-content-between ">
+  <Container className="h-100 p-0 d-flex flex-column justify-content-around ">
     <Nav className="justify-content-end" activeKey="/home">
       <Nav.Item>
-        <Nav.Link className="pt-3 pr-0" href="/">
-          <Button lg variant="success">
+        <Nav.Link className="pt-1 pr-0" href="/">
+          <Button className="font-weight-bolder" lg variant="success">
             Home
           </Button>
         </Nav.Link>
@@ -26,7 +26,7 @@ const Play = ({ hiraganaToGuess, guessList, onPlayClick }) => (
     </Nav>
     <Container
       className="d-flex h-50 flex-column justify-content-center"
-      style={{ borderRadius: '15px', backgroundColor: 'lightGray' }}
+      style={{ backgroundColor: 'lightGray', borderRadius: '1em' }}
     >
       <Row>
         <Col
@@ -41,19 +41,19 @@ const Play = ({ hiraganaToGuess, guessList, onPlayClick }) => (
       <Row className="d-flex h-75 justify-content-center">
         {test.map((kanji) => (
           <Col
-            className="p-1"
+            className="p-1 h-75"
             xs="3"
             xl="1"
             key={test.findIndex((el) => el === kanji)}
           >
             <Button
               lg
-              className="w-100 h-75 p-0 mb-1 d-flex flex-column justify-content-center align-items-center"
+              className="w-100 h-75 p-0 mb-1 d-flex flex-column justify-content-center align-items-center text-center font-weight-bolder"
               variant="warning"
               onClick={kanji === hiraganaToGuess.jap ? onPlayClick() : false}
               size="lg"
             >
-              <span className="text-center">{kanji}</span>
+              {kanji}
             </Button>
           </Col>
         ))}

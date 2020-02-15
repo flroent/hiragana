@@ -126,7 +126,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container style={styles.wrapper} className='App'>
+      <Container className='App vh-100'>
         <Switch>
           <Route exact path='/'>
             <Home
