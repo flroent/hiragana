@@ -23,7 +23,7 @@ const HiraganaType = ({
   onPlayClick,
 }) => (
   <Container
-    className="p-5 mb-5"
+    className="p-5 mb-5 animated bounceInLeft"
     style={{ backgroundColor: 'lightGray', borderRadius: '1em' }}
   >
     <Row className="mb-5">
@@ -37,7 +37,7 @@ const HiraganaType = ({
       {categoriesButtons[0].map((categorie) => (
         <Col className="p-1" xs="4" lg="1" key={`${categorie}Col`}>
           <Button
-            className="w-100 font-weight-bolder"
+            className="w-100"
             variant={categories.includes(categorie) ? 'success' : 'light'}
             key={categorie}
             onClick={onCategorieClick(categorie)}
@@ -51,7 +51,7 @@ const HiraganaType = ({
       {categoriesButtons[1].map((categorie) => (
         <Col className="p-1" xs="12" lg="3" key={`${categorie}Col`}>
           <Button
-            className="w-100 font-weight-bolder"
+            className="w-100 "
             variant={categories.includes(categorie) ? 'success' : 'light'}
             key={categorie}
             onClick={onCategorieClick(categorie)}
@@ -61,17 +61,13 @@ const HiraganaType = ({
         </Col>
       ))}
       <Col className="p-1" xs="12" lg="3">
-        <Button
-          className="w-100 font-weight-bolder"
-          onClick={addAllCategories(categoriesButtons)}
-        >
+        <Button className="w-100" onClick={addAllCategories(categoriesButtons)}>
           Select all
         </Button>
       </Col>
     </Row>
     <Row className="d-flex justify-content-center">
       <Button
-        className="font-weight-bolder"
         as={categories.length < 1 ? Button : Link}
         to="/play"
         size="lg"
