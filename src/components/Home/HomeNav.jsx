@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const HomeNav = () => (
   <Navbar collapseOnSelect expand="md" className="animated bounceInDown mb-5">
@@ -8,8 +9,8 @@ const HomeNav = () => (
 
     <Navbar.Collapse>
       <Nav className="ml-auto">
-        <Nav.Link href="/charts">Hiragana charts</Nav.Link>
-        <Nav.Link href="/about">About</Nav.Link>
+        <Nav.Link as={Link} to="/charts">Hiragana charts</Nav.Link>
+        <Nav.Link as={Link} to="/about">About</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

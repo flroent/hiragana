@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Container, Row, Col, Alert, Card, Nav, Button
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import hiraganasList from '../store';
 
 const Charts = () => (
@@ -11,7 +12,7 @@ const Charts = () => (
       activeKey="/home"
     >
       <Nav.Item>
-        <Nav.Link className="pt-1 pr-0" href="/">
+        <Nav.Link className="pt-1 pr-0" as={Link} to="/">
           <Button variant="primary">Home</Button>
         </Nav.Link>
       </Nav.Item>

@@ -106,7 +106,7 @@ class App extends React.Component {
 
   setGame = () => {
     let kanaGuess = this.randomHiragana();
-    while (kanaGuess.jap == this.state.hiraganaToGuess.jap) {
+    while (kanaGuess.jap === this.state.hiraganaToGuess.jap) {
       kanaGuess = this.randomHiragana()
     }
     let casesChoice = this.randomHiraganaList();
@@ -137,11 +137,13 @@ class App extends React.Component {
     return () => {
       const btn = document.getElementById(btnId);
       btn.classList.add('bg-danger');
+      btn.classList.add('border-danger');
       btn.classList.add('text-white');
       btn.classList.add('animated');
       btn.classList.add('shake');
       setTimeout(() => {
         btn.classList.remove('bg-danger');
+        btn.classList.remove('border-danger');
         btn.classList.remove('text-white');
         btn.classList.remove('animated');
         btn.classList.remove('shake');
@@ -152,23 +154,30 @@ class App extends React.Component {
   goodBtn = btnId => {
     return () => {
       const btn = document.getElementById(btnId);
+      btn.classList.remove('bg-warning');
+      btn.classList.remove('border-warning');
       btn.classList.add('bg-success');
+      btn.classList.add('border-success');
       btn.classList.add('text-white');
       btn.classList.add('animated');
       btn.classList.add('heartBeat');
       setTimeout(() => {
         btn.classList.remove('bg-success');
+        btn.classList.remove('border-success');
         btn.classList.remove('text-white');
         btn.classList.remove('animated');
         btn.classList.remove('heartBeat');
+        btn.classList.add('bg-warning');
+        btn.classList.add('border-warning')
         this.setGame();
       }, 800);
-    };
+      ;
+    }
   };
 
   render() {
     return (
-      <Container className='App vh-100'>
+      <Container className='App'>
         <Switch>
           <Route exact path='/'>
             <Home

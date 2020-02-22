@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Container, Row, Col, Badge, Nav, Button,
 } from 'react-bootstrap';
-import hiraganasList from '../store';
+import { Link } from 'react-router-dom';
+
 
 const Contact = () => (
   <Container className="animated bounceInLeft">
@@ -11,7 +12,7 @@ const Contact = () => (
       activeKey="/home"
     >
       <Nav.Item>
-        <Nav.Link className="pt-1 pr-0" href="/">
+        <Nav.Link className="pt-1 pr-0" as={Link} to="/">
           <Button variant="primary">Home</Button>
         </Nav.Link>
       </Nav.Item>

@@ -91,7 +91,7 @@ const hiraganasList = [
     ],
   },
   {
-    cat: 'dakutens',
+    cat: 'diacritics',
     kanas: [
       { eng: 'ga', jap: 'が' },
       { eng: 'gi', jap: 'ぎ' },
@@ -121,7 +121,7 @@ const hiraganasList = [
     ],
   },
   {
-    cat: 'handakutens',
+    cat: 'yoon',
     kanas: [
       { eng: 'kya', jap: 'きゃ' },
       { eng: 'kyu', jap: 'きゅ' },
