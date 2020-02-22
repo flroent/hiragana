@@ -1,9 +1,14 @@
-Projet personnel, en cours de developpement
+# HIRAGANAS.COM
 
-Application pour apprendre le syllabaire japonais
+Web app to practice japanese hiragana
 
-## Technologies utilisées
+Made with [React](https://www.reactjs.org), [React Bootstrap](https://react-bootstrap.github.io/) and [Animate.css](https://daneden.github.io/animate.css/)
 
-React.js(avec create-react-app) / React-Bootstrap / react-router-dom
+To launch the app :
 
-Linter: eslint configuration airbnb
+```yarn```
+
+```yarn start```
+
+
+
