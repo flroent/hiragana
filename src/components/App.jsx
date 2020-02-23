@@ -104,7 +104,73 @@ class App extends React.Component {
     return kanas;
   };
 
+  getOtherHiraganaFromSameList = (hiragana, sameCategorie) => {
+    let kanasToPush = []
+    let otherKanas = sameCategorie[0].kanas.filter(cat => cat !== hiragana)
+    for (let i = 0; i < 3; i++) {
+      let kanaToPush = otherKanas[Math.floor(Math.random() * Math.floor(otherKanas.length))]
+      kanasToPush.push(kanaToPush.jap)
+      otherKanas = otherKanas.filter(kana => kana !== kanaToPush)
+    }
+    return kanasToPush
+  }
+
+  get7otherHiraganaFromSameList = (hiragana, sameCategorie) => {
+    let kanasToPush = []
+    let otherKanas = sameCategorie[0].kanas.filter(cat => cat !== hiragana)
+    for (let i = 0; i < 7; i++) {
+      let kanaToPush = otherKanas[Math.floor(Math.random() * Math.floor(otherKanas.length))]
+      kanasToPush.push(kanaToPush.jap)
+      otherKanas = otherKanas.filter(kana => kana !== kanaToPush)
+    }
+    return kanasToPush
+  }
+
+  getOtherHiraganaFromOtherCat = (categorie) => {
+    let otherCategories = hiraganasList.filter(cat => cat !== categorie[0])
+    let otherCategoriesKanas = []
+    for (let i = 0; i < 4; i++) {
+      let newCat = otherCategories[Math.floor(Math.random() * Math.floor(otherCategories.length))]
+      otherCategoriesKanas.push(newCat.kanas[Math.floor(Math.random() * Math.floor(newCat.kanas.length))].jap)
+      otherCategories = otherCategories.filter(cat => cat !== newCat)
+    }
+    return otherCategoriesKanas
+  }
+
+  arrayShuffle = (arrayToShuffle) => {
+    let array = arrayToShuffle
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   setGame = () => {
+    let guessList = [];
+    let hiraganaToGuess = this.randomHiragana();
+    while (hiraganaToGuess.jap === this.state.hiraganaToGuess.jap) {
+      hiraganaToGuess = this.randomHiragana()
+    }
+    const sameCategorie = hiraganasList.filter(cat => cat.kanas.includes(hiraganaToGuess))
+    if (sameCategorie[0].cat === "diacritics" || sameCategorie[0].cat === "yoon") {
+      const kanasToPush = this.get7otherHiraganaFromSameList(hiraganaToGuess, sameCategorie)
+      guessList.push(hiraganaToGuess.jap, ...kanasToPush)
+    } else {
+      const kanasFromeSameCategories = this.getOtherHiraganaFromSameList(hiraganaToGuess, sameCategorie)
+      const kanasFromOtherCategories = this.getOtherHiraganaFromOtherCat(sameCategorie)
+      guessList.push(hiraganaToGuess.jap, ...kanasFromeSameCategories, ...kanasFromOtherCategories)
+    }
+    guessList = this.arrayShuffle(guessList)
+    this.setState(() => ({
+      ...this.state,
+      hiraganaToGuess: hiraganaToGuess,
+      guessList: guessList
+    }));
+
+  }
+
+  setGam = () => {
     let kanaGuess = this.randomHiragana();
     while (kanaGuess.jap === this.state.hiraganaToGuess.jap) {
       kanaGuess = this.randomHiragana()

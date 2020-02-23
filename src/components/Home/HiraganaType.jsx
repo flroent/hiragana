@@ -22,7 +22,7 @@ const HiraganaType = ({
   categories,
   onPlayClick,
 }) => (
-    <Container
+  <Container
       className="p-5 mb-5 animated bounceInLeft"
       style={{ backgroundColor: 'lightGray', borderRadius: '1em' }}
     >
@@ -30,7 +30,6 @@ const HiraganaType = ({
         <Col className="p-0" xs="12" xl="9">
           <h2 className="title mb-3">Categories</h2>
           <span className="text-black-50">Pick at least one </span>
-          <span>&#128522;</span>
         </Col>
       </Row>
       <Row className="d-flex justify-content-center">
@@ -63,7 +62,7 @@ const HiraganaType = ({
         <Col className="p-1" xs="12" lg="3">
           <Button className="w-100" onClick={addAllCategories(categoriesButtons)}>
             Select all
-        </Button>
+          </Button>
         </Col>
       </Row>
       <Row className="d-flex justify-content-center">
@@ -76,9 +75,9 @@ const HiraganaType = ({
           onClick={onPlayClick()}
         >
           Play
-      </Button>
+        </Button>
       </Row>
     </Container>
-  );
+);
 
 export default HiraganaType;

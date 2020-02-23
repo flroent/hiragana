@@ -11,7 +11,10 @@ const Header = () => (
   <Jumbotron className="bg-white animated bounceInDown">
     <Row>
       <Col className="text-center" xs="12">
-        <h1>Practice hiragana <span>&#127471;&#127477;</span></h1>
+        <h1>
+          もしもし
+          <span> &#128522;</span>
+        </h1>
       </Col>
     </Row>
   </Jumbotron>
