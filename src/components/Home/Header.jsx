@@ -12,7 +12,7 @@ const Header = () => (
     <Row>
       <Col className="text-center" xs="12">
         <h1>
-          もしもし
+          Practice and  memorize Japanese Hiragana
           <span> &#128522;</span>
         </h1>
       </Col>
